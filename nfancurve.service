@@ -1,11 +1,13 @@
 [Unit]
 Description=Nfancurve service
-After=graphical-session.target
-Requires=graphical-session.target
+After=default.target
+WantedBy=default.target
 
 [Service]
+ExecStartPre=/bin/sleep 20
 ExecStart=/usr/bin/nfancurve -d "0:0" -c /etc/nfancurve.conf
 KillSignal=SIGINT
+Restart=always
 
 [Install]
-WantedBy=graphical-session.target
+WantedBy=default.target
