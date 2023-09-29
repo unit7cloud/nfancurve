@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 
 prf() { printf %s\\n "$*" ; }
 z=$0; display=""; CDPATH=""; fname=""; num_gpus="0"; num_fans="0"; debug="0"
@@ -78,11 +78,13 @@ set_fan_control() {
 	i=0
 	while [ "$i" -le "$1" ]; do
 		$gpu_cmd -a [gpu:"$i"]/GPUFanControlState="$2" $display
+  		prf "$gpu_cmd -a [gpu:$i]/GPUFanControlState=$2 $display"
 		i=$((i+1))
 	done
 }
 set_speed() {
 	$gpu_cmd -a [fan:"$fan"]/GPUTargetFanSpeed="$cur_spd" $display
+ 	prf "$gpu_cmd -a [fan:$fan]/GPUTargetFanSpeed=$cur_spd $display"
 }
 finish() {
 	set_fan_control "$num_gpus_loop" "0"
