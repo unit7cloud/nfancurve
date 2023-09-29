@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash -x
 
 prf() { printf %s\\n "$*" ; }
 z=$0; display=""; CDPATH=""; fname=""; num_gpus="0"; num_fans="0"; debug="0"
